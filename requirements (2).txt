@@ -1,0 +1,5 @@
+streamlit
+psycopg[binary]
+google-genai
+pandas
+sqlglot
