@@ -75,7 +75,11 @@ SQL:
     response = client.models.generate_content(
     model=MODEL_NAME,
     contents=prompt,
-    config={"http_options": {"timeout": 15000}}
+    config={
+        "http_options": {
+            "timeout": 60000
+         }
+    }
     )
 
     return response.text.strip().replace("```sql", "").replace("```", "").strip()
