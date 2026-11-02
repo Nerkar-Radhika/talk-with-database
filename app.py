@@ -72,11 +72,11 @@ Rules:
 SQL:
 """
 
-   response = client.models.generate_content(
+    response = client.models.generate_content(
     model=MODEL_NAME,
     contents=prompt,
     config={"http_options": {"timeout": 15000}}
-)
+    )
 
     return response.text.strip().replace("```sql", "").replace("```", "").strip()
 
