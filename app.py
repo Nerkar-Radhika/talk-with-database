@@ -18,11 +18,16 @@ st.set_page_config(
 st.title("💬 Talk with Database")
 st.caption("Ask questions about your database in plain English.")
 
-MODEL_NAME = "gemini-3.8-flash"
+MODEL_NAME = "gemini-3.1-flash-lite"
 
 @st.cache_resource
 def get_gemini_client():
-    return genai.Client(api_key=st.secrets["GEMINI_API_KEY"])
+    from google.genai import types
+
+    return genai.Client(
+        api_key=st.secrets["GEMINI_API_KEY"],
+        http_options=types.HttpOptions(timeout=120000)
+    )
 
 client = get_gemini_client()
 
