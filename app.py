@@ -20,7 +20,11 @@ st.caption("Ask questions about your database in plain English.")
 
 MODEL_NAME = "gemini-3.8-flash"
 
-client = genai.Client(api_key=st.secrets["GEMINI_API_KEY"])
+@st.cache_resource
+def get_gemini_client():
+    return genai.Client(api_key=st.secrets["GEMINI_API_KEY"])
+
+client = get_gemini_client()
 
 DATABASE_URL = st.secrets["DATABASE_URL"]
 
@@ -68,10 +72,11 @@ Rules:
 SQL:
 """
 
-    response = client.models.generate_content(
-        model=MODEL_NAME,
-        contents=prompt
-    )
+   response = client.models.generate_content(
+    model=MODEL_NAME,
+    contents=prompt,
+    config={"http_options": {"timeout": 15000}}
+)
 
     return response.text.strip().replace("```sql", "").replace("```", "").strip()
 
@@ -173,7 +178,7 @@ if question:
     with st.chat_message("assistant"):
 
         try:
-            with st.spinner("Generating SQL..."):
+            with st.spinner("AI is thinking..."):
 
                 generated_sql = generate_sql(question)
 
