@@ -207,7 +207,5 @@ if question:
                     "data": result
                 })
 
-        except Exception:
-            st.error(
-                "Something went wrong. Please try another question."
-            )
+        except Exception as e:
+            st.error(f"Error: {type(e).__name__}: {e}")
