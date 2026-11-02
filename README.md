@@ -92,36 +92,6 @@ Users can ask questions such as:
 
 The application converts these questions into SQL queries and displays the corresponding database results.
 
-## ⚙️ Installation and Setup
-
-### 1. Clone the Repository
-
-```bash
-git clone https://github.com/YOUR-USERNAME/talk-with-database.git
-cd talk-with-database
-```
-
-### 2. Install Dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-### 3. Configure Environment Secrets
-
-Create a `.streamlit/secrets.toml` file:
-
-```toml
-GEMINI_API_KEY = "your_gemini_api_key"
-DATABASE_URL = "your_read_only_postgresql_connection_string"
-```
-
-Use your own Gemini API key and Neon PostgreSQL read-only connection string. Never commit this file or expose your credentials publicly.
-
-### 4. Run the Application
-
-```bash
-streamlit run app.py
 ```
 
 ## 🔐 Security and Validation
